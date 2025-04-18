@@ -1,10 +1,11 @@
 #include <iostream>
-#include <>
+#include <Balls.hpp>
+#include <Boards.hpp>
 
 
 int main(void) {
 
-	std::cout << "Hello, World" << std::endl;
+	std::cout << "Welcome to Connect Andy!" << std::endl;
 
 	return 0;
 }
