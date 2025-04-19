@@ -4,16 +4,13 @@
 #include <SFML/Graphics.hpp>
 
 
-class Balls {
+class Ball : public sf::CircleShape
+{
 public:
-
-	Balls();
-	~Balls();
-
-
-
-
-private:
-	int _ballSize;
-	int _ballColor;
+	Ball (const float& rad, const sf::Vector2f& pos, 
+		const sf::Color& color) : sf::CircleShape(rad)
+	{
+		this->setFillColor(color);
+		this->setPosition(pos);
+	}
 };
