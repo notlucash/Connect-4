@@ -5,15 +5,15 @@
 
 int main() {
 
-    sf::RenderWindow window(sf::VideoMode({ 2400, 1600}), "Connect 4");
+    sf::RenderWindow window(sf::VideoMode({ 1200, 800}), "Connect Andy");
 
-    const sf::Texture texture("boardimage.jpg");
-    sf::Sprite sprite(texture);
+    const sf::Texture boardtex("boardimagesmall.jpg");
+    sf::Sprite boardsprite(boardtex);
 
     // Create a circle shape to represent the ball
-    sf::CircleShape ball(78); // Radius of 80 pixels
+    sf::CircleShape ball(39.3); // Radius of 39.3 pixels
     ball.setFillColor(sf::Color::Green); // Set the color of the ball
-    ball.setPosition({ 703.f, 1077.f }); // Position the ball in the center of the window
+    ball.setPosition({ 876.f, 637.f }); // Position the ball in the center of the window
 
     while (window.isOpen())
     {
@@ -25,7 +25,8 @@ int main() {
 
         window.clear();
 
-        window.draw(sprite);
+        // draws sprites in window
+        window.draw(boardsprite);
         window.draw(ball);
 
         window.display();

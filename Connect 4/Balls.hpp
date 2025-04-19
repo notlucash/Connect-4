@@ -4,9 +4,10 @@
 #include <SFML/Graphics.hpp>
 
 
-class Ball : public sf::CircleShape
-{
+// inherits the CircleShape
+class Ball : public sf::CircleShape {
 public:
+	//constructor
 	Ball (const float& rad, const sf::Vector2f& pos, 
 		const sf::Color& color) : sf::CircleShape(rad)
 	{
