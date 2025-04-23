@@ -8,51 +8,25 @@ Menu::~Menu() {
 }
 
 int Menu::DisplayMenu(sf::RenderWindow& window) {
-	//sf::RenderWindow window(sf::VideoMode({ 1200, 800 }), "Connect Andy");
 
-	// Open a font
-	const sf::Font font("JungleAdventurer.ttf");
+	const sf::Texture menuTex("Menu.jpg");
+	sf::Sprite menuSprite(menuTex);
 
-	// Create a text
-	sf::Text title1(font, "Connect");
-	title1.setCharacterSize(75);
-	title1.setStyle(sf::Text::Bold);
-	title1.setFillColor(sf::Color::Red);
-	title1.setPosition({ 380.f, 200.f }); // Set to somewhere visible
+	sf::RectangleShape Button1({ 400.f, 140.f });
+	Button1.setPosition({ 400.f, 250.f });
+	sf::RectangleShape Button2({ 400.f, 140.f });
+	Button2.setPosition({ 400.f, 395.f });
+	sf::RectangleShape Button3({ 400.f, 140.f });
+	Button3.setPosition({ 400.f, 545.f });
 
-	sf::Text title2(font, "Andy");
-	title2.setCharacterSize(75);
-	title2.setStyle(sf::Text::Bold);
-	title2.setFillColor(sf::Color::Yellow);
-	title2.setPosition({ 660.f, 200.f });
+	window.draw(menuSprite);
 
-	sf::Text local(font, "Local Match");
-	local.setCharacterSize(40);
-	local.setStyle(sf::Text::Bold);
-	local.setFillColor(sf::Color::Black);
-	local.setPosition({ 490.f, 325.f });
-
-	/*sf::Text online(font, "Online Match");
-	online.setCharacterSize(40);
-	online.setStyle(sf::Text::Bold);
-	online.setFillColor(sf::Color::Black);
-	online.setPosition({ 483.f, 400.f });*/
-
-	window.clear(sf::Color(239, 223, 213)); // set background color to match board background color
-
-	// Draw it
-	window.draw(title1);
-	window.draw(title2);
-	window.draw(local);
-	//window.draw(online);
-
-	// Display it
 	window.display();
 
 	while (window.isOpen())
 	{
 
-		while (const std::optional event = window.pollEvent()) 
+		while (const std::optional event = window.pollEvent())
 		{
 			if (event->is<sf::Event::Closed>())
 				window.close();
@@ -63,20 +37,24 @@ int Menu::DisplayMenu(sf::RenderWindow& window) {
 				sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window)); // get mouse position
 
 				// get position of buttons
-				sf::FloatRect localButton = local.getGlobalBounds();
-				//sf::FloatRect onlineButton = online.getGlobalBounds();
+				sf::FloatRect playButton = Button1.getGlobalBounds();
+				sf::FloatRect helpButton = Button2.getGlobalBounds();
+				sf::FloatRect exitButton = Button3.getGlobalBounds();
 
-				// if mouse is in local button area
-				if (localButton.contains(mousePos))
+				 // if mouse is in local button area
+				if (playButton.contains(mousePos))
 				{
 					return 1;
 				}
-
-				//// if mouse is in online button area
-				//if (onlineButton.contains(mousePos))
-				//{
-				//	return 2;
-				//}
+				if (helpButton.contains(mousePos))
+				{
+					return 2;
+				}
+				// if mouse is in online button area
+				if (exitButton.contains(mousePos))
+				{
+					window.close();
+				}
 			}
 		}
 	}
