@@ -139,27 +139,7 @@ void Board::runGame()
     {
         if (menuOption == 2)
         {
-            if (menuOption == 0)
-            {
-                return;
-            }
-            if (menuOption == 3)
-            {
-                menuOption = gameMenu.DisplayMenu(window);
-            }
-            else if (menuOption == 4 || menuOption == 5)
-            {
-                std::cout << "Online is too hard." << std::endl;
-                menuOption = 3;
-            }
-        }
-        else if (menuOption == 0)
-        {
-            return;
-        }
-        else
-        {
-            menuOption = gameMenu.DisplayMenu(window);
+            
         }
     }
 
@@ -177,6 +157,14 @@ void Board::runGame()
         return;
     }
     sf::Sprite boardSprite(boardTexture);
+
+    sf::Texture transparentTex;
+    if (!transparentTex.loadFromFile("board.png"))
+    {
+        std::cout << "Error loading board texture!" << std::endl;
+        return;
+    }
+    sf::Sprite transparentSprite(transparentTex);
 
     sf::Font font;
     if (!font.openFromFile("JungleAdventurer.ttf"))
@@ -235,7 +223,7 @@ void Board::runGame()
                             updateBoard(row, selected_column, current_player);
 
                             float targetX = 285.f + selected_column * 105.f;
-                            float targetY = 151.f + row * 105.f;
+                            float targetY = 181.5 + row * 99;
                             sf::Color currentPlayerColor;
 
                             if (current_player == 1)
@@ -248,7 +236,7 @@ void Board::runGame()
                             }
 
 
-                            placedBalls.emplace_back(39.3f, sf::Vector2f{ targetX, 21.f }, currentPlayerColor);
+                            placedBalls.emplace_back(39.6f, sf::Vector2f{ targetX, 21.f }, currentPlayerColor);
                             placedBalls.back().dropBall(targetY);
                             pieceDropping = true;
 
@@ -328,6 +316,7 @@ void Board::runGame()
         {
             window.draw(previewBall);
         }
+        window.draw(transparentSprite);
         if (gameOver)
         {
             // Set text based on winner
