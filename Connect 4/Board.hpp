@@ -1,23 +1,32 @@
 #pragma once
 #include <iostream>
-#include <fstream>
-#include <time.h>
+#include <vector>
 #include <SFML/Graphics.hpp>
-#include "Balls.hpp"
 
-class Board {
+#define ROWS 6
+#define COLS 7
+
+class Ball;
+
+class Board
+{
 public:
-	Board(); //constructor
-	~Board(); //destructor
+    Board();
+    ~Board();
 
-	int gameBoard[ROWS][COLS];
-	
-	void updateBoard(int row, int col, int current_player);
-	int getFirstRow(int col);
-	bool isColFull(int col);
-	void runGame();
+    void updateBoard(int row, int col, int player);
 
 
+    int getFirstEmptyRow(int col);
+    bool isColumnFull(int col);
+    bool checkWin(int player);
+
+
+    void runGame(); // handles game
+
+    int gameBoard[ROWS][COLS];
 private:
-	
+
+    bool checkLine(int player, int r1, int c1, int dr, int dc);
+
 };
