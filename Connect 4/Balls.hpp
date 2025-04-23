@@ -7,6 +7,8 @@
 #define ROWS 6
 #define COLS 7
 
+class Board;
+
 // inherits the CircleShape
 class Ball : public sf::CircleShape {
 public:
@@ -19,11 +21,14 @@ public:
 	}
 	~Ball();
 
-	void dropBall(int gameBoard[ROWS][COLS], float targetY, int current_player);
-	void chooseColumn(int gameBoard[ROWS][COLS], int current_player);
+	void dropBall(Board &gameBoard, float targetY, int current_player);
+	void chooseColumn(Board &gameBoard, int current_player);
+	void updateBall(float time);
 private:
 	float radius;
 	sf::Vector2f position;
 	sf::Color color;
 	int selected_column;
+	float targetLevel = 0.1f;
+	bool isDrop = false;
 };

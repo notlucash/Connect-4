@@ -12,7 +12,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode({ 1200, 800 }), "Connect Andy");
 
-    int gameBoard[ROWS][COLS];
+    Board gameBoard;
     int current_player = 1;
 
     const sf::Texture boardtex("boardimagesmall.jpg");
@@ -35,7 +35,7 @@ int main()
 
     while (window.isOpen())
     {
-
+        float time = clock.restart().asSeconds();
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
@@ -60,7 +60,7 @@ int main()
         //}
 
 
-
+        ball.updateBall(time);
         window.clear();
 
         // draws sprites in window

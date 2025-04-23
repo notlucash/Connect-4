@@ -1,6 +1,7 @@
 #pragma once
 #include "Balls.hpp"
 #include <SFML/Graphics.hpp>
+#include "Board.hpp"
 
 #define COLS 7
 #define ROWS 6
@@ -9,40 +10,70 @@ Ball::~Ball()
 {
 }
 
-void Ball::dropBall(int gameBoard[ROWS][COLS], float targetY, int current_player)
+void Ball::dropBall(Board &gameBoard, float targetY, int current_player)
 {
-    sf::Clock clock;
-    float time = clock.restart().asSeconds();
+    this->targetLevel = targetY;
+    this->isDrop = true;
+}
+
+void Ball::chooseColumn(Board &gameBoard, int current_player)
+{
+    if (!isDrop)
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        {
+            selected_column = std::max(0, this->selected_column - 1);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        {
+            selected_column = std::min(COLS - 1, this->selected_column + 1);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        {
+            int row = gameBoard.getFirstRow(selected_column);
+
+            if (row != -1)
+            {
+                float targetY = 143.f;
+                float rowH = 105.f;
+                float dropY = targetY + row * rowH - 33.f;
+                dropBall(gameBoard, dropY, current_player);
+                gameBoard.updateBoard(row, selected_column, current_player);
+            }
+
+        }
+
+        const float colWidth = 105.f;
+        const float offset = 246.f;
+        float x = offset + this->selected_column * colWidth;
+
+        this->setPosition({ x, this->getPosition().y });
+
+    }
+    
+}
+
+void Ball::updateBall(float time)
+{
+    if (!isDrop)
+    {
+        return;
+    }
     float velocity = 400.f;
     sf::Vector2f pos = this->getPosition();
 
-    if (pos.y < targetY)
+    if (pos.y < targetLevel)
     {
         float newY = pos.y + velocity * time;
-        if (newY > targetY)
+        if (newY > targetLevel)
         {
-            newY = targetY;
+
+            newY = targetLevel;
+
+
         }
         this->setPosition({ pos.x, newY });
     }
 }
 
-void Ball::chooseColumn(int gameBoard[ROWS][COLS], int current_player)
-{
-   
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-        {
-            selected_column = std::max(0, selected_column - 1);
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-        {
-            selected_column = std::min(COLS - 1, selected_column + 1);
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-        {
-            dropBall(gameBoard, selected_column, current_player);
-        }
-        this->setPosition({ selected_column * 105.f, 33.f });
-    
-    
-}
+
