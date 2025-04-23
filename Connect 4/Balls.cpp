@@ -27,27 +27,22 @@ void Ball::dropBall(int gameBoard[ROWS][COLS], float targetY, int current_player
     }
 }
 
-void Ball::chooseColumn(sf::Event event, int gameBoard[ROWS][COLS], int current_player)
+void Ball::chooseColumn(int gameBoard[ROWS][COLS], int current_player)
 {
-    if (auto* keyEvent = event.getIf<sf::Event::KeyPressed>())
-    {
-        while (keyEvent->code != sf::Keyboard::Key::Down)
+   
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
-            if (keyEvent->code == sf::Keyboard::Key::Left)
-            {
-                selected_column = std::max(0, selected_column - 1);
-            }
-            else if (keyEvent->code == sf::Keyboard::Key::Right)
-            {
-                selected_column = std::min(ROWS, selected_column + 1);
-            }
+            selected_column = std::max(0, selected_column - 1);
         }
-        if (keyEvent->code == sf::Keyboard::Key::Down)
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        {
+            selected_column = std::min(COLS - 1, selected_column + 1);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         {
             dropBall(gameBoard, selected_column, current_player);
         }
-
-        this->setPosition({ selected_column * 39.3, 33.f });
-
-    }
+        this->setPosition({ selected_column * 105.f, 33.f });
+    
+    
 }

@@ -20,7 +20,7 @@ public:
 	~Ball();
 
 	void dropBall(int gameBoard[ROWS][COLS], float targetY, int current_player);
-	void chooseColumn(sf::Event event, int gameBoard[ROWS][COLS], int current_player);
+	void chooseColumn(int gameBoard[ROWS][COLS], int current_player);
 private:
 	float radius;
 	sf::Vector2f position;
