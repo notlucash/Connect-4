@@ -3,12 +3,17 @@
 #include <iostream>
 #include "Board.hpp"
 #include "Balls.hpp"
+#include "Menu.hpp"
 
 #define ROWS 6
 #define COLS 7
 
 int main()
 {
+    Menu game;
+
+    game.DisplayMenu();
+
 
     sf::RenderWindow window(sf::VideoMode({ 1200, 800 }), "Connect Andy");
 
