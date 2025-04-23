@@ -57,12 +57,23 @@ bool Board::isColFull(int col)
 
 void Board::runGame()
 {
-    Menu game;
-
-    game.DisplayMenu();
-
-
     sf::RenderWindow window(sf::VideoMode({ 1200, 800 }), "Connect Andy");
+
+    Menu game;
+    int option;
+
+    do
+    {
+        option = game.DisplayMenu(window);
+
+        switch (option)
+        {
+        case 1:
+            break;
+        case 2: option = game.OnlineMenu(window);
+            break;
+        }
+    } while (option == 3);
 
     Board gameBoard;
     int current_player = 1;
