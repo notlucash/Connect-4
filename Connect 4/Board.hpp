@@ -15,6 +15,7 @@ public:
 	void updateBoard(int row, int col, int current_player);
 	int getFirstRow(int col);
 	bool isColFull(int col);
+	void runGame();
 
 
 private:
