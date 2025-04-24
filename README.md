@@ -2,10 +2,10 @@
 PA9 Final, game based on connect 4.
 
 This project was made by the 4 connected members, 
-Lucas [Lab Section 11]|
-Logan [Lab Section 11]|
-Quentin [Lab Section 11] 
-Nathan [Lab Section 10]|
+Lucas [Lab Section 11] |
+Logan [Lab Section 11] |
+Quentin [Lab Section 11] | 
+Nathan [Lab Section 10] |
 
 Our team has been working around the clock, 
 day in and night out for over a month, 
