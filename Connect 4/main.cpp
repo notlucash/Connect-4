@@ -12,6 +12,8 @@ int main()
 {
 	Board game;
 	game.runGame();
+
+	return 0;
 }
 
 

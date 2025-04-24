@@ -25,6 +25,8 @@ public:
     void runGame(); // handles game
 
     int gameBoard[ROWS][COLS];
+
+    void clearBoard();
 private:
 
     bool checkLine(int player, int r1, int c1, int dr, int dc);
