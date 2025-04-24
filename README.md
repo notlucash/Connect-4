@@ -17,4 +17,4 @@ The rules of the game are simple, connect 4 balls/tokens in a row,
 diagonally, horizonatally, or vertically to win, if the board is filled
 with tokens without 4 in a row of any color, it is a draw.
 
-Video Link: 
+Video Link: https://youtu.be/JE6lpyGZ8iI
