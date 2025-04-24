@@ -1,7 +1,7 @@
 # Connect-4
 PA9 Final, game based on connect 4.
 
-*Make sure to run the game in debug mode x64*
+*Make sure to run the game in release mode x64*
 
 This project was made by the 4 connected members, 
 Lucas [Lab Section 11] |
